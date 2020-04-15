@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export interface IAppProps {
 }
 
-export default App;
+interface IState {
+  message:string;
+  showColor: any;
+
+}
+
+
+export default class App extends React.Component<IAppProps, IState> {
+    constructor(props: IAppProps) {
+        super(props);
+
+        this.state = {
+          message: '',
+          showColor: ''
+          
+        }
+      
+
+    }
+    componentDidMount() {
+      this.setState( { showColor:'blue'} )
+      this.setState( {message:'Hello World!'} )
+  
+    }
+  
+
+     IshowColor = () => {
+      this.setState( { showColor:'yellow' } )
+    }
+
+   render() {
+    return (
+
+      <div style = { {backgroundColor: this.state.showColor} }>
+        <h2> {this.state.message} </h2>
+        <button  onClick ={this.IshowColor} > Apply Update </button>
+             
+      </div>
+    );
+  }
+}
